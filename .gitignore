@@ -1,1 +1,4 @@
 build
+
+# Cache di clangd
+.cache
