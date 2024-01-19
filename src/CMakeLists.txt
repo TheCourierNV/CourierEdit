@@ -1,4 +1,4 @@
 target_sources(CourierEdit
 PRIVATE
-	main.cpp
+ main.cpp
 )
