@@ -18,7 +18,9 @@ CourierEdit::CourierEdit(QWidget *parent)
 
     connect(&print_button, &QPushButton::pressed, this,
             &CourierEdit::print_data);
-    connect(&editor, &QLineEdit::editingFinished, this,
+    // TODO: Investigare se esiste un metodo più efficiente; non dovrebbe essere
+    // necessario salvare ad ogni singolo carattere
+    connect(&editor, &QPlainTextEdit::textChanged, this,
             &CourierEdit::update_data);
     connect(&quit_button, &QPushButton::pressed, this,
             &CourierEdit::quit_application);
@@ -28,7 +30,7 @@ CourierEdit::CourierEdit(QWidget *parent)
 
 void CourierEdit::print_data() { qDebug() << "Data: " << data; }
 
-void CourierEdit::update_data() { data = editor.text(); }
+void CourierEdit::update_data() { data = editor.toPlainText(); }
 
 void CourierEdit::quit_application() {
     qDebug() << "Quitting";

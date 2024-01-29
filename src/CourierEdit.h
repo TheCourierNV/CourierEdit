@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QLabel>
-#include <QLineEdit>
+#include <QPlainTextEdit>
 #include <QPushButton>
 #include <QWidget>
 
@@ -16,7 +16,7 @@ class CourierEdit : public QWidget {
     void quit_application();
 
   private:
-    QLineEdit editor;
+    QPlainTextEdit editor;
     QLabel label;
     QPushButton print_button;
     QPushButton quit_button;
