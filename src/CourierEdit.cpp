@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QDebug>
 
 #include "CourierEdit.h"
@@ -30,8 +31,6 @@ void CourierEdit::print_data() { qDebug() << "Data: " << data; }
 void CourierEdit::update_data() { data = editor.text(); }
 
 void CourierEdit::quit_application() {
-    // TODO: Investigare come comunicare con QApplication
-    // Forse con il puntatore globale qApp (anche se è brutto)?
-    // O forse creando un mio oggetto "CourierApp" che contiene QApplication?
-    qDebug() << "Quit (not implemented)";
+    qDebug() << "Quitting";
+    QApplication::quit();
 }
