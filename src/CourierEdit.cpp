@@ -3,18 +3,17 @@
 
 #include "CourierEdit.h"
 
-CourierEdit::CourierEdit(QWidget *parent)
-    : QWidget(parent), print_button(this), quit_button(this), label(this),
-      editor(this) {
+CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
+    main_layout.addWidget(&label);
+    main_layout.addWidget(&editor);
+    main_layout.addLayout(&button_layout);
+
+    button_layout.addWidget(&print_button);
+    button_layout.addWidget(&quit_button);
+
     label.setText("CourierEdit");
     print_button.setText("Print");
     quit_button.setText("Quit");
-
-    // TODO: Investigare i layout: https://doc.qt.io/qt-6/layout.html
-    label.move(0, 0);
-    editor.move(0, 100);
-    print_button.move(0, 200);
-    quit_button.move(100, 200);
 
     connect(&print_button, &QPushButton::pressed, this,
             &CourierEdit::print_data);

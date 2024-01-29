@@ -1,8 +1,10 @@
 #pragma once
 
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QPlainTextEdit>
 #include <QPushButton>
+#include <QVBoxLayout>
 #include <QWidget>
 
 class CourierEdit : public QWidget {
@@ -16,6 +18,8 @@ class CourierEdit : public QWidget {
     void quit_application();
 
   private:
+    QVBoxLayout main_layout;
+    QHBoxLayout button_layout;
     QPlainTextEdit editor;
     QLabel label;
     QPushButton print_button;
