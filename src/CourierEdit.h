@@ -14,6 +14,9 @@ class CourierEdit : public QWidget {
     void print_content();
 
   public slots:
+    void make_uppercase();
+    void make_lowercase();
+    void flip_case();
     void quit_application();
 
   private:
@@ -24,6 +27,9 @@ class CourierEdit : public QWidget {
     QLabel title;
 
     QPushButton print_button;
+    QPushButton uppercase_button;
+    QPushButton lowercase_button;
+    QPushButton flip_case_button;
     QPushButton quit_button;
 
   private:
