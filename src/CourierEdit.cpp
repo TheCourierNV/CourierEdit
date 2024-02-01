@@ -4,14 +4,15 @@
 #include "CourierEdit.h"
 
 CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
-    main_layout.addWidget(&label);
+    main_layout.addWidget(&title);
     main_layout.addWidget(&editor);
     main_layout.addLayout(&button_layout);
 
     button_layout.addWidget(&print_button);
     button_layout.addWidget(&quit_button);
 
-    label.setText("CourierEdit");
+    title.setText("CourierEdit");
+
     print_button.setText("Print");
     quit_button.setText("Quit");
 
