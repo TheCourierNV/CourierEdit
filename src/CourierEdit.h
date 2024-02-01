@@ -11,10 +11,9 @@ class CourierEdit : public QWidget {
     Q_OBJECT
   public:
     CourierEdit(QWidget *parent = nullptr);
-    void print_data();
+    void print_content();
 
   public slots:
-    void update_data();
     void quit_application();
 
   private:
@@ -28,5 +27,4 @@ class CourierEdit : public QWidget {
     QPushButton quit_button;
 
   private:
-    QString data;
 };

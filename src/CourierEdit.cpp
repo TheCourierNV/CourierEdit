@@ -17,20 +17,16 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
     quit_button.setText("Quit");
 
     connect(&print_button, &QPushButton::pressed, this,
-            &CourierEdit::print_data);
-    // TODO: Investigare se esiste un metodo più efficiente; non dovrebbe essere
-    // necessario salvare ad ogni singolo carattere
-    connect(&editor, &QPlainTextEdit::textChanged, this,
-            &CourierEdit::update_data);
+            &CourierEdit::print_content);
     connect(&quit_button, &QPushButton::pressed, this,
             &CourierEdit::quit_application);
 
     qDebug() << "CourierEdit init";
 }
 
-void CourierEdit::print_data() { qDebug() << "Data: " << data; }
-
-void CourierEdit::update_data() { data = editor.toPlainText(); }
+void CourierEdit::print_content() {
+    qDebug() << "Content: " << editor.toPlainText();
+}
 
 void CourierEdit::quit_application() {
     qDebug() << "Quitting";
