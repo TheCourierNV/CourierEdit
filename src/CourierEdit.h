@@ -22,6 +22,7 @@ class CourierEdit : public QWidget {
   private:
     QVBoxLayout main_layout;
     QHBoxLayout button_layout;
+
     QPlainTextEdit editor;
 
     QLabel title;
