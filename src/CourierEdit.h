@@ -18,6 +18,7 @@ class CourierEdit : public QWidget {
     void make_lowercase();
     void flip_case();
     void quit_application();
+    void open_file();
 
   private:
     QVBoxLayout main_layout;
@@ -31,6 +32,7 @@ class CourierEdit : public QWidget {
     QPushButton uppercase_button;
     QPushButton lowercase_button;
     QPushButton flip_case_button;
+    QPushButton open_file_button;
     QPushButton quit_button;
 
   private:

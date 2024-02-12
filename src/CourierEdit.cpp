@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QDebug>
+#include <QFileDialog>
 
 #include "CourierEdit.h"
 
@@ -12,6 +13,7 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
     button_layout.addWidget(&uppercase_button);
     button_layout.addWidget(&lowercase_button);
     button_layout.addWidget(&flip_case_button);
+    button_layout.addWidget(&open_file_button);
     button_layout.addWidget(&quit_button);
 
     title.setText("CourierEdit");
@@ -20,6 +22,7 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
     uppercase_button.setText("Make uppercase");
     lowercase_button.setText("Make lowercase");
     flip_case_button.setText("Flip case");
+    open_file_button.setText("Open a file");
     quit_button.setText("Quit");
 
     connect(&print_button, &QPushButton::pressed, this,
@@ -30,6 +33,8 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
             &CourierEdit::make_lowercase);
     connect(&flip_case_button, &QPushButton::pressed, this,
             &CourierEdit::flip_case);
+    connect(&open_file_button, &QPushButton::pressed, this,
+            &CourierEdit::open_file);
     connect(&quit_button, &QPushButton::pressed, this,
             &CourierEdit::quit_application);
 
@@ -67,4 +72,19 @@ void CourierEdit::flip_case() {
     }
 
     editor.setPlainText(new_text);
+}
+
+void CourierEdit::open_file() {
+    QFileDialog::getOpenFileContent(
+        "", [this](const QString &file_name, const QByteArray &file_contents) {
+            if (file_name.isEmpty()) {
+                title.clear();
+                editor.clear();
+                qDebug() << "Failed to open the file, somehow";
+            } else {
+                title.setText(file_name);
+                editor.setPlainText(file_contents);
+                qDebug() << "Successfully opened: " << file_name;
+            }
+        });
 }
