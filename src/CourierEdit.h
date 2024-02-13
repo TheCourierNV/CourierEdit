@@ -36,4 +36,6 @@ class CourierEdit : public QWidget {
     QPushButton quit_button;
 
   private:
+    void setup_buttons();
+    void setup_layouts();
 };

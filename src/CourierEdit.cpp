@@ -5,6 +5,15 @@
 #include "CourierEdit.h"
 
 CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
+    setup_layouts();
+    setup_buttons();
+
+    title.setText("CourierEdit");
+
+    qDebug() << "CourierEdit init";
+}
+
+void CourierEdit::setup_layouts() {
     main_layout.addWidget(&title);
     main_layout.addWidget(&editor);
     main_layout.addLayout(&button_layout);
@@ -15,8 +24,9 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
     button_layout.addWidget(&flip_case_button);
     button_layout.addWidget(&open_file_button);
     button_layout.addWidget(&quit_button);
+}
 
-    title.setText("CourierEdit");
+void CourierEdit::setup_buttons() {
 
     print_button.setText("Print");
     uppercase_button.setText("Make uppercase");
@@ -37,8 +47,6 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
             &CourierEdit::open_file);
     connect(&quit_button, &QPushButton::pressed, this,
             &CourierEdit::quit_application);
-
-    qDebug() << "CourierEdit init";
 }
 
 void CourierEdit::print_content() {
