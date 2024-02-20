@@ -13,27 +13,27 @@ class CourierEdit : public QWidget {
     CourierEdit(QWidget *parent = nullptr);
 
   public slots:
-    void print_content();
-    void make_uppercase();
-    void make_lowercase();
     void flip_case();
-    void quit_application();
+    void make_lowercase();
+    void make_uppercase();
     void open_file();
+    void print_content();
+    void quit_application();
 
   private:
-    QVBoxLayout main_layout;
     QHBoxLayout button_layout;
+    QVBoxLayout main_layout;
 
     QPlainTextEdit editor;
 
     QLabel title;
 
-    QPushButton print_button;
-    QPushButton uppercase_button;
-    QPushButton lowercase_button;
     QPushButton flip_case_button;
+    QPushButton lowercase_button;
     QPushButton open_file_button;
+    QPushButton print_button;
     QPushButton quit_button;
+    QPushButton uppercase_button;
 
   private:
     void setup_buttons();
