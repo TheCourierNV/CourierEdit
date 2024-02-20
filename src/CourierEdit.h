@@ -21,8 +21,8 @@ class CourierEdit : public QWidget {
     void quit_application();
 
   private:
-    QHBoxLayout button_layout;
-    QVBoxLayout main_layout;
+    QHBoxLayout *button_layout;
+    QVBoxLayout *main_layout;
 
     QPlainTextEdit editor;
 

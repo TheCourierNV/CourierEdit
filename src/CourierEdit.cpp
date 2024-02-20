@@ -4,7 +4,7 @@
 
 #include "CourierEdit.h"
 
-CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
+CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent) {
     setup_layouts();
     setup_buttons();
 
@@ -14,16 +14,21 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent), main_layout(this) {
 }
 
 void CourierEdit::setup_layouts() {
-    main_layout.addWidget(&title);
-    main_layout.addWidget(&editor);
-    main_layout.addLayout(&button_layout);
+    main_layout = new QVBoxLayout;
+    button_layout = new QHBoxLayout;
 
-    button_layout.addWidget(&print_button);
-    button_layout.addWidget(&uppercase_button);
-    button_layout.addWidget(&lowercase_button);
-    button_layout.addWidget(&flip_case_button);
-    button_layout.addWidget(&open_file_button);
-    button_layout.addWidget(&quit_button);
+    main_layout->addWidget(&title);
+    main_layout->addWidget(&editor);
+    main_layout->addLayout(button_layout);
+
+    button_layout->addWidget(&print_button);
+    button_layout->addWidget(&uppercase_button);
+    button_layout->addWidget(&lowercase_button);
+    button_layout->addWidget(&flip_case_button);
+    button_layout->addWidget(&open_file_button);
+    button_layout->addWidget(&quit_button);
+
+    this->setLayout(main_layout);
 }
 
 void CourierEdit::setup_buttons() {
