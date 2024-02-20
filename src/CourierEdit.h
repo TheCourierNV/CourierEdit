@@ -11,9 +11,9 @@ class CourierEdit : public QWidget {
     Q_OBJECT
   public:
     CourierEdit(QWidget *parent = nullptr);
-    void print_content();
 
   public slots:
+    void print_content();
     void make_uppercase();
     void make_lowercase();
     void flip_case();
