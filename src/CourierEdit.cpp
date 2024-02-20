@@ -27,7 +27,6 @@ void CourierEdit::setup_layouts() {
 }
 
 void CourierEdit::setup_buttons() {
-
     print_button.setText("Print");
     uppercase_button.setText("Make uppercase");
     lowercase_button.setText("Make lowercase");
