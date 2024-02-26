@@ -24,16 +24,16 @@ class CourierEdit : public QWidget {
     QHBoxLayout *button_layout;
     QVBoxLayout *main_layout;
 
-    QPlainTextEdit editor;
+    QPlainTextEdit *editor;
 
-    QLabel title;
+    QLabel *title;
 
-    QPushButton flip_case_button;
-    QPushButton lowercase_button;
-    QPushButton open_file_button;
-    QPushButton print_button;
-    QPushButton quit_button;
-    QPushButton uppercase_button;
+    QPushButton *flip_case_button;
+    QPushButton *lowercase_button;
+    QPushButton *open_file_button;
+    QPushButton *print_button;
+    QPushButton *quit_button;
+    QPushButton *uppercase_button;
 
   private:
     void setup_buttons();
