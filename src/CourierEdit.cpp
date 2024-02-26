@@ -1,6 +1,8 @@
 #include <QApplication>
 #include <QDebug>
 #include <QFileDialog>
+#include <QMenu>
+#include <QMenuBar>
 
 #include "CourierEdit.h"
 
@@ -8,10 +10,39 @@ CourierEdit::CourierEdit(QWidget *parent) : QMainWindow(parent) {
     title = new QLabel("CourierEdit");
     editor = new QPlainTextEdit();
 
+    setup_menus();
     setup_buttons();
     setup_layouts();
 
     qDebug() << "CourierEdit init";
+}
+
+void CourierEdit::setup_menus() {
+    setup_file_menu();
+    setup_text_menu();
+}
+
+void CourierEdit::setup_file_menu() {
+    QMenu *file_menu = menuBar()->addMenu("Files");
+
+    QAction *open_file = file_menu->addAction("Open");
+
+    connect(open_file, &QAction::triggered, this, &CourierEdit::open_file);
+}
+
+void CourierEdit::setup_text_menu() {
+    QMenu *text_menu = menuBar()->addMenu("Text");
+    QMenu *case_menu = text_menu->addMenu("Change case");
+
+    QAction *make_uppercase = case_menu->addAction("Make uppercase");
+    QAction *make_lowercase = case_menu->addAction("Make lowercase");
+    QAction *flip_case = case_menu->addAction("Flip case");
+
+    connect(make_uppercase, &QAction::triggered, this,
+            &CourierEdit::make_uppercase);
+    connect(make_lowercase, &QAction::triggered, this,
+            &CourierEdit::make_lowercase);
+    connect(flip_case, &QAction::triggered, this, &CourierEdit::flip_case);
 }
 
 void CourierEdit::setup_layouts() {

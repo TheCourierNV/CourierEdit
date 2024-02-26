@@ -41,4 +41,7 @@ class CourierEdit : public QMainWindow {
   private:
     void setup_buttons();
     void setup_layouts();
+    void setup_menus();
+    void setup_file_menu();
+    void setup_text_menu();
 };
