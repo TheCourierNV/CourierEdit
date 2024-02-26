@@ -4,7 +4,7 @@
 
 #include "CourierEdit.h"
 
-CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent) {
+CourierEdit::CourierEdit(QWidget *parent) : QMainWindow(parent) {
     title = new QLabel("CourierEdit");
     editor = new QPlainTextEdit();
 
@@ -15,6 +15,7 @@ CourierEdit::CourierEdit(QWidget *parent) : QWidget(parent) {
 }
 
 void CourierEdit::setup_layouts() {
+    central_widget = new QWidget;
     main_layout = new QVBoxLayout;
     button_layout = new QHBoxLayout;
 
@@ -29,7 +30,8 @@ void CourierEdit::setup_layouts() {
     button_layout->addWidget(open_file_button);
     button_layout->addWidget(quit_button);
 
-    this->setLayout(main_layout);
+    central_widget->setLayout(main_layout);
+    setCentralWidget(central_widget);
 }
 
 void CourierEdit::setup_buttons() {

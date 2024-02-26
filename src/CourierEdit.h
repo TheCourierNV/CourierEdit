@@ -2,12 +2,13 @@
 
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QMainWindow>
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
 
-class CourierEdit : public QWidget {
+class CourierEdit : public QMainWindow {
     Q_OBJECT
   public:
     CourierEdit(QWidget *parent = nullptr);
@@ -25,6 +26,8 @@ class CourierEdit : public QWidget {
     QVBoxLayout *main_layout;
 
     QPlainTextEdit *editor;
+
+    QWidget *central_widget;
 
     QLabel *title;
 
