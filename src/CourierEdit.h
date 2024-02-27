@@ -6,7 +6,6 @@
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QWidget>
 
 class CourierEdit : public QMainWindow {
     Q_OBJECT
