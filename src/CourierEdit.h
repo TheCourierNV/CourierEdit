@@ -20,6 +20,7 @@ class CourierEdit : public QMainWindow {
     void open_file();
     void print_content();
     void quit_application();
+    void save_file();
 
   private:
     QHBoxLayout *button_layout;
@@ -37,6 +38,7 @@ class CourierEdit : public QMainWindow {
     QPushButton *print_button;
     QPushButton *quit_button;
     QPushButton *uppercase_button;
+    QPushButton *save_file_button;
 
   private:
     void setup_buttons();
