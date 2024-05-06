@@ -45,4 +45,7 @@ class CourierEdit : public QMainWindow {
     void setup_menus();
     void setup_file_menu();
     void setup_text_menu();
+
+    QPushButton *make_button(const QString &text,
+                             void (CourierEdit::*&&on_press)());
 };

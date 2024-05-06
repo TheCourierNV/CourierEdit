@@ -69,29 +69,25 @@ void CourierEdit::setup_layouts() {
     setCentralWidget(central_widget);
 }
 
-void CourierEdit::setup_buttons() {
-    print_button = new QPushButton("Print");
-    uppercase_button = new QPushButton("Make uppercase");
-    lowercase_button = new QPushButton("Make lowercase");
-    flip_case_button = new QPushButton("Flip case");
-    open_file_button = new QPushButton("Open a file");
-    save_file_button = new QPushButton("Save file");
-    quit_button = new QPushButton("Quit");
+QPushButton *CourierEdit::make_button(const QString &text,
+                                      void (CourierEdit::*&&on_press)()) {
+    QPushButton *new_button = new QPushButton(text);
 
-    connect(print_button, &QPushButton::pressed, this,
-            &CourierEdit::print_content);
-    connect(uppercase_button, &QPushButton::pressed, this,
-            &CourierEdit::make_uppercase);
-    connect(lowercase_button, &QPushButton::pressed, this,
-            &CourierEdit::make_lowercase);
-    connect(flip_case_button, &QPushButton::pressed, this,
-            &CourierEdit::flip_case);
-    connect(open_file_button, &QPushButton::pressed, this,
-            &CourierEdit::open_file);
-    connect(quit_button, &QPushButton::pressed, this,
-            &CourierEdit::quit_application);
-    connect(save_file_button, &QPushButton::pressed, this,
-            &CourierEdit::save_file);
+    connect(new_button, &QPushButton::pressed, this, on_press);
+
+    return new_button;
+}
+
+void CourierEdit::setup_buttons() {
+    print_button = make_button("Print", &CourierEdit::print_content);
+    uppercase_button =
+        make_button("Make uppercase", &CourierEdit::make_uppercase);
+    lowercase_button =
+        make_button("Make lowercase", &CourierEdit::make_lowercase);
+    flip_case_button = make_button("Flip case", &CourierEdit::flip_case);
+    open_file_button = make_button("Open a file", &CourierEdit::open_file);
+    save_file_button = make_button("Save file", &CourierEdit::save_file);
+    quit_button = make_button("Quit", &CourierEdit::quit_application);
 }
 
 void CourierEdit::print_content() {
