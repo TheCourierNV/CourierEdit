@@ -2,7 +2,9 @@
 
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QList>
 #include <QMainWindow>
+#include <QPair>
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -31,13 +33,17 @@ class CourierEdit : public QMainWindow {
 
     QLabel *title;
 
-    QPushButton *flip_case_button;
-    QPushButton *lowercase_button;
-    QPushButton *open_file_button;
-    QPushButton *print_button;
-    QPushButton *quit_button;
-    QPushButton *uppercase_button;
-    QPushButton *save_file_button;
+    const QList<QPair<const char *, void (CourierEdit::*)()>> actions = {
+        {"Print", &CourierEdit::print_content},
+        {"Make uppercase", &CourierEdit::make_uppercase},
+        {"Make lowercase", &CourierEdit::make_lowercase},
+        {"Flip case", &CourierEdit::flip_case},
+        {"Open a file", &CourierEdit::open_file},
+        {"Save file", &CourierEdit::save_file},
+        {"Quit", &CourierEdit::quit_application},
+    };
+
+    QList<QPushButton *> buttons;
 
   private:
     void setup_buttons();
@@ -47,5 +53,5 @@ class CourierEdit : public QMainWindow {
     void setup_text_menu();
 
     QPushButton *make_button(const QString &text,
-                             void (CourierEdit::*&&on_press)());
+                             void (CourierEdit::*on_press)());
 };

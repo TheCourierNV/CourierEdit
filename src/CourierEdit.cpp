@@ -19,6 +19,7 @@ CourierEdit::CourierEdit(QWidget *parent) : QMainWindow(parent) {
 }
 
 void CourierEdit::setup_menus() {
+    // TODO: Trova il modo di generare questi menù partendo dal vettore actions
     setup_file_menu();
     setup_text_menu();
 }
@@ -57,20 +58,16 @@ void CourierEdit::setup_layouts() {
     main_layout->addWidget(editor);
     main_layout->addLayout(button_layout);
 
-    button_layout->addWidget(print_button);
-    button_layout->addWidget(uppercase_button);
-    button_layout->addWidget(lowercase_button);
-    button_layout->addWidget(flip_case_button);
-    button_layout->addWidget(open_file_button);
-    button_layout->addWidget(save_file_button);
-    button_layout->addWidget(quit_button);
+    for (auto button : buttons) {
+        button_layout->addWidget(button);
+    }
 
     central_widget->setLayout(main_layout);
     setCentralWidget(central_widget);
 }
 
 QPushButton *CourierEdit::make_button(const QString &text,
-                                      void (CourierEdit::*&&on_press)()) {
+                                      void (CourierEdit::*on_press)()) {
     QPushButton *new_button = new QPushButton(text);
 
     connect(new_button, &QPushButton::pressed, this, on_press);
@@ -79,15 +76,9 @@ QPushButton *CourierEdit::make_button(const QString &text,
 }
 
 void CourierEdit::setup_buttons() {
-    print_button = make_button("Print", &CourierEdit::print_content);
-    uppercase_button =
-        make_button("Make uppercase", &CourierEdit::make_uppercase);
-    lowercase_button =
-        make_button("Make lowercase", &CourierEdit::make_lowercase);
-    flip_case_button = make_button("Flip case", &CourierEdit::flip_case);
-    open_file_button = make_button("Open a file", &CourierEdit::open_file);
-    save_file_button = make_button("Save file", &CourierEdit::save_file);
-    quit_button = make_button("Quit", &CourierEdit::quit_application);
+    for (auto &action : actions) {
+        buttons.append(make_button(action.first, action.second));
+    }
 }
 
 void CourierEdit::print_content() {
