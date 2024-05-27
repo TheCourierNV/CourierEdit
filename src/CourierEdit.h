@@ -34,15 +34,52 @@ class CourierEdit : public QMainWindow {
 
     QLabel *title;
 
-    const QList<std::tuple<const char *, void (CourierEdit::*)()>> actions = {
-        {"Print", &CourierEdit::print_content},
-        {"Make uppercase", &CourierEdit::make_uppercase},
-        {"Make lowercase", &CourierEdit::make_lowercase},
-        {"Flip case", &CourierEdit::flip_case},
-        {"Open a file", &CourierEdit::open_file},
-        {"Save file", &CourierEdit::save_file},
-        {"Quit", &CourierEdit::quit_application},
+    enum class ActionCategory {
+        File,
+        ApplicationControl,
+        // TODO: Trova modo per implementare sotto-categorie
+        TextCase,
     };
+
+    const QList<
+        std::tuple<const char *, void (CourierEdit::*)(), ActionCategory>>
+        actions = {
+            {
+                "Print",
+                &CourierEdit::print_content,
+                ActionCategory::ApplicationControl,
+            },
+            {
+                "Make uppercase",
+                &CourierEdit::make_uppercase,
+                ActionCategory::TextCase,
+            },
+            {
+                "Make lowercase",
+                &CourierEdit::make_lowercase,
+                ActionCategory::TextCase,
+            },
+            {
+                "Flip case",
+                &CourierEdit::flip_case,
+                ActionCategory::TextCase,
+            },
+            {
+                "Open a file",
+                &CourierEdit::open_file,
+                ActionCategory::File,
+            },
+            {
+                "Save file",
+                &CourierEdit::save_file,
+                ActionCategory::File,
+            },
+            {
+                "Quit",
+                &CourierEdit::quit_application,
+                ActionCategory::ApplicationControl,
+            },
+        };
 
     QList<QPushButton *> buttons;
 
