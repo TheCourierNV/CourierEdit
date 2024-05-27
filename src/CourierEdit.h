@@ -4,10 +4,11 @@
 #include <QLabel>
 #include <QList>
 #include <QMainWindow>
-#include <QPair>
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
+
+#include <tuple>
 
 class CourierEdit : public QMainWindow {
     Q_OBJECT
@@ -33,7 +34,7 @@ class CourierEdit : public QMainWindow {
 
     QLabel *title;
 
-    const QList<QPair<const char *, void (CourierEdit::*)()>> actions = {
+    const QList<std::tuple<const char *, void (CourierEdit::*)()>> actions = {
         {"Print", &CourierEdit::print_content},
         {"Make uppercase", &CourierEdit::make_uppercase},
         {"Make lowercase", &CourierEdit::make_lowercase},
