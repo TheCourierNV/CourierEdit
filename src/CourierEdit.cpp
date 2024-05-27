@@ -77,9 +77,9 @@ QPushButton *CourierEdit::make_button(const QString &text,
 
 void CourierEdit::setup_buttons() {
     for (auto &action : actions) {
-        auto [button_name, button_signal] = action;
+        auto [button_name, button_slot, _] = action;
 
-        buttons.append(make_button(button_name, button_signal));
+        buttons.append(make_button(button_name, button_slot));
     }
 }
 
