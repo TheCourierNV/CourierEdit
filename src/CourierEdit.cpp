@@ -20,6 +20,7 @@ CourierEdit::CourierEdit(QWidget *parent) : QMainWindow(parent) {
 
 void CourierEdit::setup_menus() {
     // TODO: Crea automaticamente i menù categoria
+    QMenu *application_menu = menuBar()->addMenu("App");
     QMenu *file_menu = menuBar()->addMenu("Files");
     QMenu *text_menu = menuBar()->addMenu("Text");
     QMenu *case_menu = text_menu->addMenu("Change case");
@@ -30,6 +31,10 @@ void CourierEdit::setup_menus() {
         QMenu *category_menu;
 
         switch (action_category) {
+        case ActionCategory::ApplicationControl: {
+            category_menu = application_menu;
+            break;
+        }
         case ActionCategory::TextCase: {
             category_menu = case_menu;
             break;
