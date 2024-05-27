@@ -19,34 +19,40 @@ CourierEdit::CourierEdit(QWidget *parent) : QMainWindow(parent) {
 }
 
 void CourierEdit::setup_menus() {
-    // TODO: Trova il modo di generare questi menù partendo dal vettore actions
-    setup_file_menu();
-    setup_text_menu();
-}
-
-void CourierEdit::setup_file_menu() {
+    // TODO: Crea automaticamente i menù categoria
     QMenu *file_menu = menuBar()->addMenu("Files");
-
-    QAction *open_file = file_menu->addAction("Open");
-    QAction *save_file = file_menu->addAction("Save");
-
-    connect(open_file, &QAction::triggered, this, &CourierEdit::open_file);
-    connect(save_file, &QAction::triggered, this, &CourierEdit::save_file);
-}
-
-void CourierEdit::setup_text_menu() {
     QMenu *text_menu = menuBar()->addMenu("Text");
     QMenu *case_menu = text_menu->addMenu("Change case");
 
-    QAction *make_uppercase = case_menu->addAction("Make uppercase");
-    QAction *make_lowercase = case_menu->addAction("Make lowercase");
-    QAction *flip_case = case_menu->addAction("Flip case");
+    for (auto action : actions) {
+        auto [action_name, action_slot, action_category] = action;
 
-    connect(make_uppercase, &QAction::triggered, this,
-            &CourierEdit::make_uppercase);
-    connect(make_lowercase, &QAction::triggered, this,
-            &CourierEdit::make_lowercase);
-    connect(flip_case, &QAction::triggered, this, &CourierEdit::flip_case);
+        QMenu *category_menu;
+
+        switch (action_category) {
+        case ActionCategory::TextCase: {
+            category_menu = case_menu;
+            break;
+        }
+        case ActionCategory::File: {
+            category_menu = file_menu;
+            break;
+        }
+
+        // TODO: Pensare meglio come gestire il caso dove una categoria non
+        // ha un menù
+        default:
+            continue;
+        }
+
+        make_menu(action_name, category_menu, action_slot);
+    }
+}
+
+void CourierEdit::make_menu(const QString &action_name, QMenu *parent_menu,
+                            void (CourierEdit::*action_slot)()) {
+    QAction *new_action = parent_menu->addAction(action_name);
+    connect(new_action, &QAction::triggered, this, action_slot);
 }
 
 void CourierEdit::setup_layouts() {

@@ -92,4 +92,7 @@ class CourierEdit : public QMainWindow {
 
     QPushButton *make_button(const QString &text,
                              void (CourierEdit::*on_press)());
+
+    void make_menu(const QString &action_name, QMenu *parent_menu,
+                   void (CourierEdit::*action_slot)());
 };
